@@ -1,7 +1,7 @@
 {
   "builds": [{ "src": "app.py", "use": "@vercel/python" }],
   "routes": [
-    { "src": "/api/?", "methods": ["POST"], "dest": "app.handler" },
+    { "src": "/api", "methods": ["POST"], "dest": "app.handler" },
     { "src": "/health", "methods": ["GET"], "dest": "app.handler" }
   ]
 }
