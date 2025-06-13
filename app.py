@@ -1,24 +1,25 @@
-# app.py
 from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
-class Query(BaseModel):
+class QueryRequest(BaseModel):
     question: str
-    image: Optional[str] = None
+    image: str = None  # Optional base64 image
 
-@app.post("/query")
-async def answer_query(query: Query):
+@app.post("/api/")
+async def query_virtual_ta(request: QueryRequest):
+    # Dummy response for now
     return {
         "answer": "You must use `gpt-3.5-turbo-0125`, even if the AI Proxy only supports `gpt-4o-mini`. Use the OpenAI API directly for this question.",
         "links": [
@@ -28,7 +29,7 @@ async def answer_query(query: Query):
             },
             {
                 "url": "https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939/3",
-                "text": "Prof. Anand’s tokenizer method to calculate token cost."
+                "text": "Token count and pricing explanation."
             }
         ]
     }
