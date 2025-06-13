@@ -1,15 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
+  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
   "routes": [
-    {
-      "src": "/api/?",
-      "dest": "app.py"
-    }
+    { "src": "/api", "methods": ["POST"], "dest": "app.py" },
+    { "src": "/health", "methods": ["GET"], "dest": "app.py" }
   ]
 }

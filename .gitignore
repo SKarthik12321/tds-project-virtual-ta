@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+downloaded_threads/
+markdown_files/
+preprocess.py
